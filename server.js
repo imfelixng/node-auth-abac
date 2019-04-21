@@ -1,4 +1,6 @@
+require('dotenv').config({path: '.env'})
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -7,5 +9,7 @@ app.get('/', (req, res) => {
     success: true
   })
 });
+
+mongoose.connect(process.env.MONGO_URL, (err) => console.log(err));
 
 app.listen(3000, () => console.log('Server is running...'));
